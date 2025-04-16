@@ -1,0 +1,53 @@
+<div class="search-section">
+  <div class="search-header">
+    <h2 class="search-title">Get Your Book</h2>
+    <div class="search-container">
+      <input type="text" ng-model="searchQuery" placeholder="Search books...">
+      <i class="fas fa-search"></i>
+    </div>
+  </div>
+</div>
+
+<div class="category-section">
+  <div class="category-tags">
+    <div ng-repeat="category in categories" 
+         class="category-tag" 
+         ng-class="{active: selectedCategory === category.value}"
+         ng-click="filterByCategory(category.value)">
+      {{category.name}}
+    </div>
+  </div>
+</div>
+
+<div class="books-section">
+  <div class="books-grid">
+    <div ng-repeat="book in books" class="book-card">
+      <div class="book-cover-container">
+        <img ng-if="book.cover" ng-src="{{book.cover}}" class="book-cover" alt="{{book.title}}">
+        <i ng-if="!book.cover" class="fas fa-book book-cover-placeholder"></i>
+      </div>
+      <div class="book-info">
+        <div class="book-title">{{book.title}}</div>
+        <div class="book-author">{{book.author}}</div>
+        <div class="book-meta">
+          <span class="rating">{{book.rating}} ★</span>
+          <span>{{book.pages}} pages</span>
+        </div>
+      </div>
+      <div class="book-actions">
+        <button class="action-btn read-btn" ng-click="openReader(book.id)">
+          <i class="fas fa-book-open"></i>
+        </button>
+        <button class="action-btn library-btn" ng-click="addToLibrary(book.id)">
+          <i class="fas fa-bookmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="empty-state" ng-if="!books.length">
+      <i class="fas fa-book-open"></i>
+      <h3>No Books Found</h3>
+      <p>Try adjusting your search or category filter</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="book-card">
+  <div class="book-cover-container">
+    <img ng-if="book.cover" ng-src="{{book.cover}}" class="book-cover" alt="{{book.title}}">
+    <i ng-if="!book.cover" class="fas fa-book book-cover-placeholder"></i>
+  </div>
+  <div class="book-info">
+    <div class="book-title">{{book.title}}</div>
+    <div class="book-author">{{book.author}}</div>
+    <div class="book-meta">
+      <span class="rating">{{book.rating}} ★</span>
+      <span>{{book.pages}} pages</span>
+    </div>
+  </div>
+  <div class="book-actions" ng-if="showActions">
+    <button class="action-btn read-btn" ng-click="onRead()">
+      <i class="fas fa-book-open"></i>
+    </button>
+    <button class="action-btn library-btn" ng-click="onAddToLibrary()">
+      <i class="fas fa-bookmark"></i>
+    </button>
+    <button class="action-btn download-btn" ng-click="onDownload()">
+      <i class="fas fa-download"></i>
+    </button>
+  </div>
+</div>

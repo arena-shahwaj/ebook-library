@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="ebookApp">
+<head>
+  <meta charset="UTF-8">
+  <title>fRee-eBook</title>
+  <link rel="stylesheet" href="app/styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div ng-if="!isLoggedIn">
+    <div ng-include="'app/views/login.html'"></div>
+  </div>
+
+  <div ng-if="isLoggedIn">
+    <div class="container">
+      <div class="header">
+        <div class="logo">
+          <i class="fas fa-book-open"></i>
+          <span>fRee-eBook</span>
+        </div>
+      </div>
+
+      <div ng-view></div>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="#/discover" class="nav-item" ng-class="{active: $route.current.activeTab === 'discover'}">
+        <i class="fas fa-home"></i>
+        <span>Discover</span>
+      </a>
+      <a href="#/library" class="nav-item" ng-class="{active: $route.current.activeTab === 'library'}">
+        <i class="fas fa-bookmark"></i>
+        <span>Library</span>
+        <span class="nav-badge" ng-if="libraryCount > 0">{{libraryCount}}</span>
+      </a>
+      <a href="#/downloads" class="nav-item" ng-class="{active: $route.current.activeTab === 'downloads'}">
+        <i class="fas fa-download"></i>
+        <span>Downloads</span>
+        <span class="nav-badge" ng-if="downloadsCount > 0">{{downloadsCount}}</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/data/books.js"></script>
+  <script src="app/services/authService.js"></script>
+  <script src="app/services/storageService.js"></script>
+  <script src="app/services/bookService.js"></script>
+  <script src="app/controllers/loginController.js"></script>
+  <script src="app/controllers/booksController.js"></script>
+  <script src="app/controllers/libraryController.js"></script>
+  <script src="app/controllers/downloadsController.js"></script>
+</body>
+</html>

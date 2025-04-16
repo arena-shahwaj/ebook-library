@@ -1,0 +1,23 @@
+<div class="books-section" ng-controller="LibraryController">
+  <div class="section-header">
+    <h2 class="section-title">
+      <i class="fas fa-bookmark"></i> My Library
+    </h2>
+    <button class="clear-btn" ng-click="clearLibrary()">Clear</button>
+  </div>
+  
+  <div class="books-grid">
+    <book-card 
+      ng-repeat="book in libraryBooks"
+      book="book"
+      show-actions="false"
+      on-read="openReader(book.id)">
+    </book-card>
+    
+    <div class="empty-state" ng-if="!libraryBooks.length">
+      <i class="fas fa-bookmark"></i>
+      <h3>Your Library is Empty</h3>
+      <p>Add books from Discover to save them here</p>
+    </div>
+  </div>
+</div>
